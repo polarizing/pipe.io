@@ -1,0 +1,25 @@
+{
+  "name": "pipe.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polarizing/pipe.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polarizing/pipe.io/issues"
+  },
+  "homepage": "https://github.com/polarizing/pipe.io#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "nodemon": "^1.10.0",
+    "paper": "^0.10.2",
+    "socket.io": "^1.4.8"
+  }
+}
