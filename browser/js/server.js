@@ -64,3 +64,6 @@ socket.on('snare:tap', function (data) {
 document.ontouchmove = function(event){
     event.preventDefault();
 }
+
+
+
