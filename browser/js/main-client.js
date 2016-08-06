@@ -144,67 +144,67 @@ text.content = 'Move your mouse over the view, to see its position';
 //    }
 // }
 
-var layer3 = new Layer();
-layer3.activate();
+// var layer3 = new Layer();
+// layer3.activate();
 
-var rect = new Path.Rectangle({
-    point: [0, 0],
-    size: [view.size.width, view.size.height],
-    strokeColor: '#113',
-    selected: true
+// var rect = new Path.Rectangle({
+//     point: [0, 0],
+//     size: [view.size.width, view.size.height],
+//     strokeColor: '#113',
+//     selected: true
 
-})
+// })
 
-rect.sendToBack();
-rect.fillColor = '#FFEEDB'
+// rect.sendToBack();
+// rect.fillColor = '#FFEEDB'
 
-var triColors = ['#FA9F42', '#4A2040', '#0B6E4F'];
+// var triColors = ['#FA9F42', '#4A2040', '#0B6E4F'];
 
-var triLayer1 = new Layer();
-var triLayer2 = new Layer();
-var triLayer3 = new Layer();
+// var triLayer1 = new Layer();
+// var triLayer2 = new Layer();
+// var triLayer3 = new Layer();
 
-var topLayer = triLayer1;
-var middleLayer = triLayer3;
-var bottomLayer = triLayer2;
+// var topLayer = triLayer1;
+// var middleLayer = triLayer3;
+// var bottomLayer = triLayer2;
 
-var layers = [triLayer1, triLayer2, triLayer3];
+// var layers = [triLayer1, triLayer2, triLayer3];
 
 
 var width = view.size.width;
 var height = view.size.height;
 var alpha = 0.85;
 
-var maxSize = Math.min(width, height) / 10;
+// var maxSize = Math.min(width, height) / 10;
 
-var minSize = Math.min(width, height) / 20;
+// var minSize = Math.min(width, height) / 20;
 
-triColors.forEach(function(color, idx) {
-    layers[idx].activate();
-    for (var i = 0; i < 90; i++) {
-        var sx = Math.random() * width;
-        var sy = Math.random() * height;
-        var r = Math.random() * maxSize;
-        r = r >= minSize ? r : minSize;
-        var tri = new Path.RegularPolygon(new Point(sx, sy), 3, r);
-        tri.fillColor = color;
-        tri.opacity = alpha;
-        tri.rotate(Math.random() * 90)
-    }
-})
+// triColors.forEach(function(color, idx) {
+//     layers[idx].activate();
+//     for (var i = 0; i < 90; i++) {
+//         var sx = Math.random() * width;
+//         var sy = Math.random() * height;
+//         var r = Math.random() * maxSize;
+//         r = r >= minSize ? r : minSize;
+//         var tri = new Path.RegularPolygon(new Point(sx, sy), 3, r);
+//         tri.fillColor = color;
+//         tri.opacity = alpha;
+//         tri.rotate(Math.random() * 90)
+//     }
+// })
 
-triLayer1.moveAbove(triLayer3);
+// triLayer1.moveAbove(triLayer3);
 
-var xMove = width / 200;
-var yMove = height / 200;
-var iMinusX;
-var iMinusY;
-var idx = 1;
-var readyToStart = false;
+// var xMove = width / 200;
+// var yMove = height / 200;
+// var iMinusX;
+// var iMinusY;
+// var idx = 1;
+// var readyToStart = false;
 
-var idy = 1;
-var readyToRotate = false;
-var iMinus;
+// var idy = 1;
+// var readyToRotate = false;
+// var iMinus;
 
 // function onMouseDown(event) {
 
@@ -216,62 +216,225 @@ var iMinus;
 
 // }
 
-function onMouseDown (event) {
+// function onMouseDown (event) {
 
-    console.log('double clicking')
-    iMinus = (Math.round(Math.random())==0) ? 1 : -1;
+//     console.log('double clicking')
+//     iMinus = (Math.round(Math.random())==0) ? 1 : -1;
 
-    idy = 1;
-    readyToRotate = true;
+//     idy = 1;
+//     readyToRotate = true;
+// }
+
+// function onFrame(event) {
+
+//     if (idx < 30 && readyToStart) {
+
+//         topLayer.translate(xMove * iMinusX, yMove * iMinusY);
+//         // topLayer.children.forEach(function(child) {
+//         //     child.rotate(15*iMinusX)
+//         // })
+//         middleLayer.translate(xMove * 0.33* iMinusX, yMove * 0.33 * iMinusY);
+//         // middleLayer.children.forEach(function(child) {
+//         //     child.rotate(7*iMinusX*-1)
+//         // })
+//         bottomLayer.translate(xMove * 0.12* iMinusX, yMove * 0.12 * iMinusY)
+//         // bottomLayer.children.forEach(function(child) {
+//         //     child.rotate(3*iMinusX)
+//         // })
+//         idx++;
+
+
+//         if (idx % 15 === 0)  {
+//             iMinusX *= -1;
+//             iMinusY *= -1;
+//         }
+//     }
+
+//     if (idy < 30 && readyToRotate) {
+
+//         //topLayer.translate(xMove * iMinusX, yMove * iMinusY);
+//         topLayer.children.forEach(function(child) {
+//             child.rotate(15*iMinus)
+//         })
+//         //middleLayer.translate(xMove * 0.33* iMinusX, yMove * 0.33 * iMinusY);
+//         middleLayer.children.forEach(function(child) {
+//             child.rotate(7*iMinus)
+//         })
+//         //bottomLayer.translate(xMove * 0.12* iMinusX, yMove * 0.12 * iMinusY)
+//         bottomLayer.children.forEach(function(child) {
+//             child.rotate(3*iMinus)
+//         })
+//         idy++;
+
+
+//         if (idy % 15 === 0)  {
+//             iMinus *= -1
+//         }
+//     }
+// }
+var rect = new Path.Rectangle({
+    point: [0, 0],
+    size: [view.size.width, view.size.height],
+    strokeColor: '#113',
+    selected: true
+
+})
+
+rect.sendToBack();
+rect.fillColor = 'black';
+
+var floatLayer = new Layer();
+floatLayer.activate();
+
+
+var count = 150;
+
+// var path = new Path.Circle({
+//     center: [0, 0],
+//     radius: Math.min(width, height)/25,
+//     fillColor: 'yellow'
+// });
+
+var cirColors = ['#55C1FF', '#FFFB46', '#EC058E', '#00F6ED']
+
+var circs = [];
+for (var i = 0; i < count; i++) {
+    var path = new Path.Circle({
+        center: Point.random() * view.size,
+        radius: Math.min(width, height) / 25
+    })
+
+    path.fillColor = chance.pick(cirColors);
+    path.opacity = 0.6
+
+    path.scale(i / count);
+
+    circs.push(path);
+
+
 }
+
+// circs.forEach(function(circle) {
+//     circle.fillColor = chance.pick(cirColors);
+
+//     console.log(circle.fillColor, circle.fillColor.hue)
+// })
+
+// console.log(path.fillColor)
+
+// var symbol = new Symbol(path);
+
+// for (var i = 0; i < count; i++) {
+//     var center = Point.random()*view.size;
+//     var placedSymbol = symbol.place(center);
+//     placedSymbol.scale(i/count);
+
+var moveHomie = false;
+var tracker = 1;
+
+function onMouseDownEvent(arg) {
+
+    var increment = arg ? 15 : 30;
+
+    circs.forEach(function(circle, index) {
+        destArray[index] = (Point.random() * view.size - circle.position) / 30;
+    })
+
+    tracker = 1;
+    moveHomie = true;
+
+}
+
+function onMouseDown(event) {
+
+    console.log('mouseDown event');
+    onMouseDownEvent();
+
+}
+
+
+var destArray = [];
+
+var trackerMove = 1;
+var moveMoveHomie = false;
+var moveDestArray = [];
+
+var directionChanger = 1;
+
+
+
+// function onMouseDown(event) {
+
+//     var location = event.point;
+
+//     console.log(location)
+//     circs.forEach(function(circle, index) {
+//         moveDestArray[index] = (location - circle.position)/15//*(index/count);
+//         if (index%15==0) console.log(moveDestArray[index])
+//     })
+
+//     directionChanger = 1;
+//     trackerMove = 1;
+//     moveMoveHomie = true;
+// }
 
 function onFrame(event) {
 
-    if (idx < 30 && readyToStart) {
+    // for (var i = 0; i < count; i++) {
+    //     var item = project.activeLayer.children[i];
 
-        topLayer.translate(xMove * iMinusX, yMove * iMinusY);
-        // topLayer.children.forEach(function(child) {
-        //     child.rotate(15*iMinusX)
-        // })
-        middleLayer.translate(xMove * 0.33* iMinusX, yMove * 0.33 * iMinusY);
-        // middleLayer.children.forEach(function(child) {
-        //     child.rotate(7*iMinusX*-1)
-        // })
-        bottomLayer.translate(xMove * 0.12* iMinusX, yMove * 0.12 * iMinusY)
-        // bottomLayer.children.forEach(function(child) {
-        //     child.rotate(3*iMinusX)
-        // })
-        idx++;
+    //     item.position.x += item.bounds.width/20;
 
+    //     if (item.bounds.left > width) {
+    //         item.position.x = -item.bounds.width;
+    //     }
 
-        if (idx % 15 === 0)  {
-            iMinusX *= -1;
-            iMinusY *= -1;
-        }
+    //     //item.fillColor.hue += Math.random()*5;
+    // }
+    if (trackerMove <= 15 && moveMoveHomie) {
+        circs.forEach(function(circle, index) {
+            circle.position += moveDestArray[index] * directionChanger;
+        })
+
+        trackerMove++;
+
+        if (trackerMove === 15) moveMoveHomie = false;
+        if (trackerMove === 15) onMouseDownEvent();
+
     }
 
-    if (idy < 30 && readyToRotate) {
+    if (tracker <= 30 && moveHomie) {
 
-        //topLayer.translate(xMove * iMinusX, yMove * iMinusY);
-        topLayer.children.forEach(function(child) {
-            child.rotate(15*iMinus)
+        circs.forEach(function(circle, index) {
+            circle.position += destArray[index];
         })
-        //middleLayer.translate(xMove * 0.33* iMinusX, yMove * 0.33 * iMinusY);
-        middleLayer.children.forEach(function(child) {
-            child.rotate(7*iMinus)
-        })
-        //bottomLayer.translate(xMove * 0.12* iMinusX, yMove * 0.12 * iMinusY)
-        bottomLayer.children.forEach(function(child) {
-            child.rotate(3*iMinus)
-        })
-        idy++;
 
-
-        if (idy % 15 === 0)  {
-            iMinus *= -1
-        }
+        tracker++;
     }
+
+
+
+    if (!moveMoveHomie) circs.forEach(function(circle) {
+        circle.position.x += circle.bounds.width / 20;
+
+        if (circle.bounds.left > width) {
+            circle.position.x = -circle.bounds.width;
+        }
+
+        circle.fillColor.hue += Math.random() * 5;
+    })
+
+    //symbol.definition.fillColor.hue += 5;
 }
+
+// function onMouseDown(event) {
+//     for (var i = 0; i < count; i++) {
+//         var item = project.activeLayer.children[i];
+
+//         symbol.definition.fillColor.hue += '5'
+//     }
+// }
+
 
 // De-bugging
 socket.emit('debug', debug.view);
