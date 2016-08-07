@@ -7,6 +7,15 @@ socket.on('connect:client', function () {
 	console.log('You have connected to the server!')
 })
 
+socket.on('init', function () {
+
+})
+
+
+
+
+
+
 // Track Accelerometer and Gyroscope
 // gyro.frequency = 10;
 
@@ -20,21 +29,21 @@ socket.on('connect:client', function () {
 
 // Shake Event
 
-var myShakeEvent = new Shake({
-    threshold: 6, // optional shake strength threshold
-    timeout: 100 // optional, determines the frequency of event generation
-});
+// var myShakeEvent = new Shake({
+//     threshold: 6, // optional shake strength threshold
+//     timeout: 100 // optional, determines the frequency of event generation
+// });
 
-myShakeEvent.start();
+// myShakeEvent.start();
 
-window.addEventListener('shake', shakeEventDidOccur, false);
+// window.addEventListener('shake', shakeEventDidOccur, false);
 
-var shakeCount = 0;
-//function to call when shake occurs
-function shakeEventDidOccur () {
-    socket.emit('snare:shake', 'snare shake event occured');
-    //put your own code here etc.
+// var shakeCount = 0;
+// //function to call when shake occurs
+// function shakeEventDidOccur () {
+//     socket.emit('snare:shake', 'snare shake event occured');
+//     //put your own code here etc.
 
-    $('.shakeEvent').text(shakeCount++)
-}
+//     $('.shakeEvent').text(shakeCount++)
+// }
 

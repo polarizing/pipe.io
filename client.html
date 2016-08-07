@@ -3,14 +3,16 @@
 <head>
 	<title>pipe.io player</title>
 	<link rel="stylesheet" type="text/css" href="/css/styles.css">
-	<link rel="apple-touch-icon" href="/images/pipe-logo.png">
+	<link rel="apple-touch-icon" href="/images/logo.png">
 	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-	<script type="text/javascript" src="js/paper-full.min.js"></script>
+	<script type="text/javascript" src="js/paper/paper-full.min.js"></script>
 	<script type="text/paperscript" src="js/main-client.js" canvas="myCanvas"></script>		
 	<script src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript" src="js/shake-event.js"></script>
 	<script type="text/javascript" src="js/client.js"></script>
 	<script type="text/javascript" src="js/gyro.js"></script>
+	<script src="js/chance.js"></script>
+
 <!-- 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
  -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -20,10 +22,10 @@
 
 </head>
 
-<body>
+<body id="container">
 
-	<h1 class="shakeEvent"></h1>
-	<canvas id="myCanvas" resize></canvas>
+<!-- 	<h1 class="shakeEvent"></h1>
+ -->	<canvas id="myCanvas" resize="true" hidpi="off"></canvas>
 
 </body>
 

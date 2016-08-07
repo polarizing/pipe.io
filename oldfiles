@@ -1,0 +1,537 @@
+
+
+// var layerOne = new Layer();
+// layerOne.setName('Circle Visualization')
+// layerOne.activate();
+
+
+// var rect = new Path.Rectangle({
+//     point: [0, 0],
+//     size: [view.size.width, view.size.height],
+//     strokeColor: 'white',
+//     selected: true
+// });
+// rect.sendToBack();
+// rect.fillColor = '#D45346';
+
+
+
+
+// var colors = ['#B3244E', '#DE8400', '#F0CC00', '#8A9C28'];
+// var circles = new Group();
+// var outerRings = new Group();
+// var innerRings = new Group();
+// var width = view.size.width;
+// var height = view.size.height;
+// var center = height / 2;
+// var amount = 4;
+// var radius = 30;
+// var column = view.size.width / 24;
+// var steps = [];
+// var offset = column * 2;
+// var stepSize = (width - offset * 2) / (amount + 1)
+// var beacons = new Beacons();
+
+// function createSteps (num) {
+//     for (var i = 1; i <= num; i++) {
+//         steps.push(stepSize * i + offset);
+//     }
+// }
+
+// // HELPER FUNCTIONS
+// function createHeightLines (num) {
+//     for (var i = 0; i < num; i++) {
+//         var path = new Path.Line({
+//             from: [steps[i], 0],
+//             to: [steps[i], height],
+//             strokeColor: 'black'
+//         })
+//     }
+// }
+
+// function createCenterLine () {
+//     var path = new Path.Line({
+//             from: [0, center],
+//             to: [width, center],
+//             strokeColor: 'black'
+//         })
+// }
+
+// function createCircles (num) {
+//     for (var i = 0; i < num; i++) {
+//         var circle = new Path.Circle({
+//             center: [steps[i], center],
+//             radius: stepSize * 0.4,
+//             strokeColor: colors[i],
+//             fillColor: colors[i]
+//         })
+//         circles.addChild(circle);
+//         // createOuterRing(i);
+//         createInnerRing(i);
+//         beacons.createBeacon(circle.position.x, circle.position.y, 'blue')
+//     }
+// }
+
+// function createOuterRing (index) {
+//     var circle = circles.children[index];
+//     var ring = new Path.Circle(circle.position, stepSize * 0.8);
+//     ring.strokeColor = colors[index];
+//     ring.strokeWidth = 10;
+//     ring.position = circles.children[index].position;
+//     ring.opacity = 0.3;
+//     outerRings.addChild(ring);
+// }
+
+// function createInnerRing (index) {
+//     var circle = circles.children[index];
+//     var ring = new Path.Circle(circle.position, stepSize * 0.5);
+//     ring.strokeColor = colors[index];
+//     ring.strokeWidth = 10;
+//     ring.position = circles.children[index].position;
+//     ring.opacity = 0.3;
+//     innerRings.addChild(ring);
+// }
+
+// createSteps(amount);
+// createCircles(amount);
+
+// // if(window.innerHeight > window.innerWidth){
+// //     var portraitOrientation = new Layer();
+// //     portraitOrientation.setName('Portrait Orientation')
+// //     portraitOrientation.activate();
+
+// //     var rect = new Path.Rectangle({
+// //         point: [0, 0],
+// //         size: [view.size.width, view.size.height],
+// //         strokeColor: 'white',
+// //         selected: true
+// //     });
+// //     rect.sendToBack();
+// //     rect.fillColor = '';
+// // }
+
+// // console.log(outerRings.children[0].position);
+// // console.log(outerRings.children[0].bounds);
+// // console.log(outerRings.children[0].rotation);
+// // console.log(outerRings.children[0].scaling);
+// // console.log(outerRings.children[0].strokeScaling);
+
+// // for pulse animation
+// // var destWidth = outerRings.children[0].bounds.width + 20;
+// // var destHeight = outerRings.children[0].bounds.height + 20;
+
+// // var origWidth, origHeight;
+// // console.log(outerRings.children[0].bounds);
+// // console.log(destWidth, destHeight);
+// // function pulse (item, destWidth, destHeight) {
+// //     var dX = destWidth - item.bounds.width;
+// //     var dY = destHeight - item.bounds.height;
+// //     console.log(dX);
+// //     if (dX < 1 || dY < 1) {
+// //         item.bounds.width -= dX / 30;
+// //         item.bounds.height -= dY / 30;
+// //     } else {
+// //         item.bounds.width += dX / 30;
+// //         item.bounds.height += dY / 30;
+// //     }
+// //     if (Math.abs(dX) <= 2 || Math.abs(dY) <= 2) {
+// //         destWidth = origWidth;
+// //         destHeight = origHeight;
+// //         origWidth = destWidth;
+// //         origHeight = origHeight;
+// //     }
+// // }
+
+// var count = 0;
+// var seconds = 1;
+
+// function onFrame(event) {
+//         // console.log('hi');
+//     // console.log(outerRings.length);
+//     // console.log(event);
+//     innerRings.children.forEach(function (ring) {
+//         ring.strokeColor.hue += 1;
+//     })
+
+//     if (count < seconds * 30) {
+//         beacons.animate();
+//         count++;
+//     } else {
+//         beacons.reset();
+//     }
+
+//     // for (var i = 0; i < outerRings.children.length; i++) {
+
+//     // }
+//     // outerRings.forEach( function (ring) {
+//     //     ring.rotateMove(random(2, 4));
+//     // })
+
+
+//     // console.log(event.time);
+// }
+
+// // circles.children[0].on('mouseenter', function () {
+// //             // this.fillColor = 'black';
+// //             socket.emit('snare:clap', {});
+// //         })
+// circles.children[0].on('mousedown', function () {
+//             // this.fillColor = 'black';
+//             socket.emit('snare:clap', {});
+//         })
+// // circles.children[1].on('mouseenter', function () {
+// //             // this.fillColor = 'black';
+// //             socket.emit('snare:clap', {});
+// //         })
+// circles.children[1].on('mousedown', function () {
+//             // this.fillColor = 'black';
+//             socket.emit('snare:clap', {});
+//         })
+// // circles.children[2].on('mouseenter', function () {
+// //             // this.fillColor = 'black';
+// //             socket.emit('drum:bass', {});
+// //         })
+// circles.children[2].on('mousedown', function () {
+//             // this.fillColor = 'black';
+//             socket.emit('drum:bass', {});
+//         })
+// // circles.children[3].on('mouseenter', function () {
+// //             // this.fillColor = 'black';
+// //             socket.emit('drum:bass', {});
+// //         })
+// circles.children[3].on('mousedown', function () {
+//             // this.fillColor = 'black';
+//             socket.emit('drum:bass', {});
+//         })
+
+// var myShakeEvent = new Shake({
+//     threshold: 7, // optional shake strength threshold
+//     timeout: 150 // optional, determines the frequency of event generation
+// });
+
+// myShakeEvent.start();
+
+// window.addEventListener('shake', shakeEventDidOccur, false);
+
+// var shakeCount = 0;
+// //function to call when shake occurs
+// function shakeEventDidOccur () {
+//     socket.emit('snare:shake', 'snare shake event occured');
+//     //put your own code here etc.
+//     count = 0;
+//     $('.shakeEvent').text(shakeCount++)
+// }
+
+// // layerOne.remove();      // this prevents the redCircle from being drawn
+// // project.layers.push(layerOne);  // now the redCircle is back
+
+// // createHeightLines(amount);
+// // createCenterLine();
+// // console.log(circles);
+
+
+// // function onFrame(event) {
+// //     beacons.animate();
+// // }
+
+// function Beacons() {
+//     var beaconEntities = new Array();
+
+//     this.createBeacon = function (x, y, color) {
+//         var beacon = new Beacon(x, y, color);
+//         beaconEntities.push(beacon);
+//     };
+
+//     this.removeBeacon = function (x, y) {
+//         for (var i = beaconEntities.length - 1; i >= 0; i--) {
+//             if (beaconEntities[i].x === x && beaconEntities[i].y === y) {
+//                 beaconEntities[i].remove();
+//                 beaconEntities.splice(i, 1);
+//             }
+//         }
+//     };
+
+//     this.animate = function () {
+//         for (var i = beaconEntities.length - 1; i >= 0; i--) {
+//             beaconEntities[i].animate();
+//         }
+//     };
+
+//     this.reset = function () {
+//         for (var i = beaconEntities.length - 1; i >= 0; i--) {
+//             beaconEntities[i].reset();
+//         }
+//     }
+// }
+
+// function Beacon(x,y,color) {
+//     this.x = x;
+//     this.y = y;
+//     this.circle = draw(x, y, color, 1);
+//     this.circleTemp = draw(x, y, color, 0);
+//     this.count = 0;
+//     this.scale = 1;
+//     this.print = 1;        
+
+//     function draw (x,y,color,alpha) {
+//         var circleToDraw = new Path.Circle(new Point(x, y), 1);
+//         circleToDraw.strokeColor = color;
+//         circleToDraw.strokeWidth = 6;
+//         circleToDraw.strokeColor.alpha = alpha;
+//         return circleToDraw;
+//     };
+    
+//     this.remove = function () {
+//         this.circle.remove();
+//     };
+
+//     this.reset = function () {
+//         this.circle.scale(1/this.scale);        
+//         this.scale = 1;
+//         this.circle.strokeColor.alpha = 1;
+//         this.count = 0;
+//         this.print = 0;  
+//     }
+
+//     this.animate = function () {
+//         if (this.count < 30) {
+//             var scaleFactor = 1.2;
+//             this.circle.scale(scaleFactor);
+//             this.scale = this.scale * scaleFactor;
+//             var alpha = this.circle.strokeColor.alpha - 0.025;
+//             this.circle.strokeColor.alpha = alpha;
+//         }
+//         else {
+//             //this.circle.remove();
+//             //this.circle = this.circleTemp.clone();
+//             this.circle.scale(1/this.scale);        
+//             this.scale = 1;
+//             this.circle.strokeColor.alpha = 1;
+//             this.count = 0;
+//             this.print = 0;        
+//         }
+//         this.count++;
+//     };
+// }   
+
+// var count = 0;
+// var seconds = 1;
+
+// function onFrame(event) {
+//         // console.log('hi');
+//     // console.log(outerRings.length);
+//     // console.log(event);
+//     innerRings.children.forEach(function (ring) {
+//         ring.strokeColor.hue += 1;
+//     })
+
+//     if (count < seconds * 30) {
+//         beacons.animate();
+//         count++;
+//     } else {
+//         beacons.reset();
+//     }
+
+//     // for (var i = 0; i < outerRings.children.length; i++) {
+
+//     // }
+//     // outerRings.forEach( function (ring) {
+//     //     ring.rotateMove(random(2, 4));
+//     // })
+
+
+//     // console.log(event.time);
+// }
+
+
+// old utils
+// var utils = {};
+
+// utils.width = view.size.width;
+// utils.height = view.size.height;
+// utils.verticalCenter = view.size.height / 2;
+// utils.horizontalCenter = view.size.width / 2;
+// utils.columnPartition = 24;
+// utils.rowPartition = 24;
+// utils.column = view.size.width / utils.columnPartition;          // n columns of p pixels
+// utils.row = view.size.height / utils.rowPartition;              // n rows of p pixels
+// utils.leftOffsetColumn = 0;                                // left offset by N columns
+// utils.rightOffsetColumn = 0;
+// utils.topOffsetRow = 0;
+// utils.bottomOffsetRow = 0;
+// utils.leftOffset = 0;
+// utils.rightOffset = 0;
+// utils.topOffset = 0;
+// utils.bottomOffset = 0;
+// utils.leftRightOffset = 0;                             // in px
+// utils.topBottomOffset = 0;
+
+// utils.setLeftRightOffset = function () {
+//         utils.leftOffset = utils.column * utils.leftOffsetColumn;
+//         utils.rightOffset = utils.column * utils.rightOffsetColumn;
+//         utils.leftRightOffset = utils.leftOffset + utils.rightOffset;
+// console.log('width', utils.width);
+// console.log('height', utils.height);
+// console.log('test', utils.verticalCenter);
+// console.log('test', utils.horizontalCenter);
+// console.log('column', utils.column);
+// console.log('row', utils.row);
+
+//     };
+// utils.setTopBottomOffset = function () {
+//     utils.topOffset = utils.row * utils.topOffsetRow;
+//     utils.bottomOffset = utils.row * utils.bottomOffsetRow;
+//     utils.topBottomOffset = utils.topOffset + utils.bottomOffset;
+// };
+// utils.setOffsets = function (arr) {
+//     utils.topOffsetRow =  arr[0];
+//     utils.rightOffsetColumn = arr[1];
+//     utils.bottomOffsetRow = arr[2];
+//     utils.leftOffsetColumn = arr[3];// top, right, bottom, left
+//     utils.setLeftRightOffset();
+//     utils.setTopBottomOffset();
+// };
+// utils.getLeftRightStepSize = function (num) {
+//     return (utils.width - utils.leftRightOffset) / (num + 1)
+// };
+// utils.getTopBottomStepSize = function (num) {
+//     return (utils.height - utils.topBottomOffset) / (num + 1)
+// };
+// utils.createLeftRightIntervals = function (num) {
+//         var steps = [];
+//         var stepSize = utils.getLeftRightStepSize(num)
+//         for (var i = 1; i <= num; i++) {
+//             steps.push(stepSize * i + utils.leftOffset)
+//         }
+//         return steps;
+//     };
+// utils.createTopBottomIntervals = function (num) {
+//         var steps = [];
+//         var stepSize = utils.getTopBottomStepSize(num)
+//         for (var i = 1; i <= num; i++) {
+//             steps.push(stepSize * i + utils.topOffset)
+//         }
+//         return steps;
+//     };
+// utils.drawGridLines =  function (lrNum, tbNum) {
+//         var lrSteps = utils.createLeftRightIntervals(lrNum);
+//         var tbSteps = utils.createTopBottomIntervals(tbNum);
+//         for (var i = 0; i < lrNum; i++) {
+//             var path = new Path.Line({
+//                 from: [lrSteps[i], 0],
+//                 to: [lrSteps[i], utils.height],
+//                 strokeColor: 'black'
+//             })
+//         }
+//         for (var i = 0; i < tbNum; i++) {
+//             var path = new Path.Line({
+//                 from: [0, tbSteps[i]],
+//                 to: [utils.width, tbSteps[i]],
+//                 strokeColor: 'black'
+//             })
+//         }
+//         // create crosshair / center-lines
+//         var path = new Path.Line({
+//             from: [0, utils.verticalCenter],
+//             to: [utils.width, utils.verticalCenter],
+//             strokeColor: 'red'
+//         })
+//         var path = new Path.Line({
+//             from: [utils.horizontalCenter, 0],
+//             to: [utils.horizontalCenter, utils.height],
+//             strokeColor: 'red'
+//         })
+//     }
+
+
+function Utils () {
+    this.width = view.size.width;
+    this.height = view.size.height;
+    this.verticalCenter = this.height / 2;
+    this.horizontalCenter = this.width / 2;
+    this.columnPartition = 24;
+    this.rowPartition = 24;
+    this.column = this.width / this.columnPartition;          // n columns of p pixels
+    this.row = this.height / this.rowPartition;              // n rows of p pixels
+    this.leftOffsetColumn = 0;                                // left offset by N columns
+    this.rightOffsetColumn = 0;
+    this.topOffsetRow = 0;
+    this.bottomOffsetRow = 0;
+    this.leftOffset = 0;
+    this.rightOffset = 0;
+    this.topOffset = 0;
+    this.bottomOffset = 0;
+    this.leftRightOffset = 0;                             // in px
+    this.topBottomOffset = 0;
+}
+
+Utils.prototype.setLeftRightOffset = function () {
+        this.leftOffset = this.column * this.leftOffsetColumn;
+        this.rightOffset = this.column * this.rightOffsetColumn;
+        this.leftRightOffset = this.leftOffset + this.rightOffset;
+}
+
+Utils.prototype.setTopBottomOffset = function () {
+    this.topOffset = this.row * this.topOffsetRow;
+    this.bottomOffset = this.row * this.bottomOffsetRow;
+    this.topBottomOffset = this.topOffset + this.bottomOffset;
+};
+Utils.prototype.setOffsets = function (arr) {
+    this.topOffsetRow =  arr[0];
+    this.rightOffsetColumn = arr[1];
+    this.bottomOffsetRow = arr[2];
+    this.leftOffsetColumn = arr[3];// top, right, bottom, left
+    this.setLeftRightOffset();
+    this.setTopBottomOffset();
+};
+Utils.prototype.getLeftRightStepSize = function (num) {
+    return (this.width - this.leftRightOffset) / (num + 1)
+};
+Utils.prototype.getTopBottomStepSize = function (num) {
+    return (this.height - this.topBottomOffset) / (num + 1)
+};
+Utils.prototype.createLeftRightIntervals = function (num) {
+        var steps = [];
+        var stepSize = this.getLeftRightStepSize(num)
+        for (var i = 1; i <= num; i++) {
+            steps.push(stepSize * i + this.leftOffset)
+        }
+        return steps;
+    };
+Utils.prototype.createTopBottomIntervals = function (num) {
+        var steps = [];
+        var stepSize = this.getTopBottomStepSize(num)
+        for (var i = 1; i <= num; i++) {
+            steps.push(stepSize * i + this.topOffset)
+        }
+        return steps;
+    };
+Utils.prototype.drawGridLines =  function (lrNum, tbNum) {
+        var lrSteps = this.createLeftRightIntervals(lrNum);
+        var tbSteps = this.createTopBottomIntervals(tbNum);
+        for (var i = 0; i < lrNum; i++) {
+            var path = new Path.Line({
+                from: [lrSteps[i], 0],
+                to: [lrSteps[i], this.height],
+                strokeColor: 'black'
+            })
+        }
+        for (var i = 0; i < tbNum; i++) {
+            var path = new Path.Line({
+                from: [0, tbSteps[i]],
+                to: [this.width, tbSteps[i]],
+                strokeColor: 'black'
+            })
+        }
+        // create crosshair / center-lines
+        var path = new Path.Line({
+            from: [0, this.verticalCenter],
+            to: [this.width, this.verticalCenter],
+            strokeColor: 'red'
+        })
+        var path = new Path.Line({
+            from: [this.horizontalCenter, 0],
+            to: [this.horizontalCenter, this.height],
+            strokeColor: 'red'
+        })
+    }

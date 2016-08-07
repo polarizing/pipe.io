@@ -36,6 +36,7 @@ io.on('connection', function (socket) {
     })
 
     socket.on('create:room', function (data) {
+
     })
 
     socket.on('chat message', function(msg){
@@ -46,11 +47,33 @@ io.on('connection', function (socket) {
     //     console.log(data);
     // })
     socket.on('snare:shake', function (data) {
+        console.log('shake');
+        console.log(data);
         io.to(rooms[1].server).emit('snare:shake');
     })
 
     socket.on('snare:tap', function (data) {
+        console.log('shake');
         io.to(rooms[1].server).emit('snare:tap');
+    })
+
+    socket.on('snare:clap', function (data) {
+        console.log('clap');
+        io.to(rooms[1].server).emit('snare:clap');
+    })
+
+    socket.on('drum:bass', function (data) {
+        console.log('bass');
+        io.to(rooms[1].server).emit('drum:bass');
+    })
+
+    socket.on('maracas', function (data) {
+        console.log('maracas');
+        io.to(rooms[1].server).emit('maracas');
+    })
+
+    socket.on('fingerCymbal', function (data) {
+        io.to(rooms[1].server).emit('fingerCymbal');
     })
 
     socket.on('debug', function (data) {
