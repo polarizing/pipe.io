@@ -1,6 +1,34 @@
+#top-left {
+	width: 50%;
+	height: 50%;
+	float: left;
+}
 
-.container {
- 	height: 100vh; 
-  width: 100vw; 
-  display: block;
+#top-right {
+	width: 50%;
+	height: 50%;
+	float: right;
+}
+
+#bottom-left {
+	width: 50%;
+	height: 50%;
+	float: left;
+}
+
+#bottom-right {
+	width: 50%;
+	height: 50%;
+	float: right;
+}
+html,
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 100%;
+    height: 100%;
 }

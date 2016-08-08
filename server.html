@@ -4,35 +4,34 @@
 <head>
     <title>pipe.io server</title>
     <link rel="stylesheet" type="text/css" href="/css/server-styles.css">
-<!--     <link rel="stylesheet" type="text/css" href="/css/skeleton/skeleton.css">
- -->    <link rel="stylesheet" type="text/css" href="/css/skeleton/normalize.css">
-    <link rel="apple-touch-icon" href="/images/pipe-logo.png">
+    <link rel="apple-touch-icon" href="/images/pipe-logo3.png">
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="js/paper/paper-full.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="js/bufferloader.js"></script>
     <script type="text/javascript" src="js/gyro.js"></script>
+        <script src="js/chance.js"></script>
+
     <!-- 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
  -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <!-- from http://www.html5rocks.com/en/mobile/fullscreen/ -->
+    <!-- LOAD SOUNDS -->
     <script type="text/javascript" src="js/client-server/main-server.js"></script>
+
+    <!-- PAPERJS CANVAS -->
     <script type="text/paperscript" src="js/client-server/main-server-top-left.js" canvas="top-left"></script>
-     <!-- <script type="text/paperscript" src="js/client-server/main-server-top-right.js" canvas="top-right"></script> -->
+    <script type="text/paperscript" src="js/client-server/main-server-top-right.js" canvas="top-right"></script>
     <script type="text/paperscript" src="js/client-server/main-server-bottom-left.js" canvas="bottom-left"></script>
-    <!-- <script type="text/paperscript" src="js/client-server/main-server-bottom-right.js" canvas="bottom-right"></script> -->
+    <script type="text/paperscript" src="js/client-server/main-server-bottom-right.js" canvas="bottom-right"></script>
 </head>
 
 <body>
-    <div class="container">
-                <canvas id="top-left" resize></canvas>
-  <!-- 
-                <canvas id="top-right" resize></canvas>
- -->
-                <canvas id="bottom-left" resize></canvas>
-<!--                 <canvas id="bottom-right" resize></canvas>
- -->    </div>
+	<canvas id="top-left" resize style='background:white;'></canvas>
+   <canvas id="top-right" resize style='background:white; '></canvas>
+   <canvas id="bottom-left" resize style='background:white;'></canvas>
+   <canvas id="bottom-right" resize style='background:white;'></canvas>
 </body>
 
 </html>

@@ -73,7 +73,42 @@ io.on('connection', function (socket) {
     })
 
     socket.on('fingerCymbal', function (data) {
-        io.to(rooms[1].server).emit('fingerCymbal');
+        console.log('fingerCymbal');
+        io.to(rooms[1].server).emit('fingerCymbal', data);
+    })
+
+    socket.on('balaphone', function (data) {
+        console.log('balaphone')
+        io.to(rooms[1].server).emit('balaphone');
+    })
+
+    socket.on('rimcymbal', function (data) {
+        console.log('rim cymbal')
+        io.to(rooms[1].server).emit('rimcymbal');
+    })
+
+    socket.on('dhol', function (data) {
+        console.log('dhol')
+        io.to(rooms[1].server).emit('dhol');
+    })
+
+    socket.on('hihat', function (data) {
+        io.to(rooms[1].server).emit('hihat');
+    })
+
+    socket.on('modernsynth', function(data) {
+        console.log('modernsynth')
+        io.to(rooms[1].server).emit('modernsynth', data);
+    })
+
+    socket.on('africandrum', function(data) {
+        console.log('africandrum')
+        io.to(rooms[1].server).emit('africandrum', data);
+    })
+
+    socket.on('synthbass', function(data) {
+        console.log('synthbass');
+        io.to(rooms[1].server).emit('synthbass', data);
     })
 
     socket.on('debug', function (data) {
