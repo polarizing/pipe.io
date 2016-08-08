@@ -137,8 +137,8 @@ function resizeAndRedrawCanvas()
 var shift = view2.animations.triangleShift;
 
 socket.on('fingerCymbal', function(data) {
-    shift.xDirection = data.x > utils.width / 2 ? 1 : -1;
-    shift.yDirection = data.y > utils.height / 2 ? 1 : -1;
+    shift.xDirection = data.x;
+    shift.yDirection = data.y;
     shift.currentFrame = 1;
     shift.ready = true;
 })
@@ -158,6 +158,7 @@ function View2(name) {
     this.init = function() {
         // "Root View Layer -> this.layer"
         // this.setBackground();
+        this.setBackground('#F5E9E2');
 
         // "Child Layers -> this.layers"
         obj = { layers: 3, layerNames: ['topLayer', 'middleLayer', 'bottomLayer'] }
@@ -263,7 +264,7 @@ function View2(name) {
 
     this.animations = {
         triangleRotate: { ready: false, currentFrame: 1, seconds: 1, direction: 1 },
-        triangleShift: { ready: true, currentFrame: 1, seconds: 1, xDirection: 1, yDirection: 1, constants: { xMove: utils.width / 200, yMove: utils.height / 200 } }
+        triangleShift: { ready: true, currentFrame: 1, seconds: 1, xDirection: 1, yDirection: 1, constants: { xMove: utils.width / 300, yMove: utils.height / 300 } }
     };
 }
 

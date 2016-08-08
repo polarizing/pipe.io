@@ -1,4 +1,6 @@
 var portrait = false;
+var selectedView = 1;
+var room;
 
 function init() {
     if (window.innerHeight > window.innerWidth) {
@@ -8,9 +10,19 @@ function init() {
     document.ontouchmove = function(event){
         event.preventDefault();
     }
+
+    var queryParams = $.deparam.querystring();
+    selectedView = queryParams.view;
+    room = queryParams.room;
+    console.log(queryParams);
+
+    socket.emit('room:connected', {room: room});
+
 }
 
 init();
+
+console.log(selectedView);
 
 function Utils() {
     this.width = view.size.width;
@@ -112,7 +124,7 @@ function View1(name) {
     this.init = function() {
         this.layer.setName(name);
         this.draw();
-        this.setBackground('#D45346');
+        this.setBackground('#0D5D56');
         this.addListeners();
     };
     this.activate = function() {
@@ -126,7 +138,7 @@ function View1(name) {
     };
     this.draw = function() {
         utils.setOffsets([0, 2, 0, 2]);
-        utils.drawGridLines(4, 4);
+        // utils.drawGridLines(4, 4);
         var circles = new Circles();
         var numCircles = 4;
         var circleIntervals = utils.createLeftRightIntervals(numCircles);
@@ -188,7 +200,7 @@ function View1(name) {
 
     this.shake = function() {
         controller.currentView.animations.beacons.currentFrame = 0;
-        socket.emit('rimcymbal', {});
+        socket.emit('rimcymbal', {room: room});
     };
 
     this.animations = {
@@ -200,16 +212,16 @@ function View1(name) {
     this.addListeners = function() {
 
         this.items.circles.circleEntities[0].circle.on('mousedown', function() {
-            socket.emit('snare:shake', {});
+            socket.emit('snare:shake', {room: room});
         })
         this.items.circles.circleEntities[1].circle.on('mousedown', function() {
-            socket.emit('snare:clap', {});
+            socket.emit('snare:clap', {room: room});
         })
         this.items.circles.circleEntities[2].circle.on('mousedown', function() {
-            socket.emit('drum:bass', {});
+            socket.emit('drum:bass', {room: room});
         })
         this.items.circles.circleEntities[3].circle.on('mousedown', function() {
-            socket.emit('hihat', {});
+            socket.emit('hihat', {room: room});
         })
     }
 }
@@ -222,6 +234,7 @@ function View2(name) {
     this.init = function() {
         // "Root View Layer -> this.layer"
         // this.setBackground();
+        this.setBackground('#F5E9E2');
 
         // "Child Layers -> this.layers"
         obj = { layers: 3, layerNames: ['topLayer', 'middleLayer', 'bottomLayer'] }
@@ -289,18 +302,18 @@ function View2(name) {
         this.animations.triangleRotate.direction = (Math.round(Math.random()) == 0) ? 1 : -1;
         this.animations.triangleRotate.currentFrame = 1;
         this.animations.triangleRotate.ready = true;
-        socket.emit('maracas', {});
+        socket.emit('maracas', {room: room});
     }
 
     this.addListeners = function() {
 
         var shift = this.animations.triangleShift;
         view.on('mousedown', function(event) {
-            shift.xDirection = event.point.x > utils.width / 2 ? 1 : -1;
-            shift.yDirection = event.point.y > utils.height / 2 ? 1 : -1;
+            shift.xDirection = chance.pick([1, -1]);
+            shift.yDirection = chance.pick([1, -1]);
             shift.currentFrame = 1;
             shift.ready = true;
-            socket.emit('fingerCymbal', { x: event.point.x, y: event.point.y });
+            socket.emit('fingerCymbal', { x: shift.xDirection, y: shift.yDirection, room: room });
         })
     }
 
@@ -346,7 +359,7 @@ function View2(name) {
 
     this.animations = {
         triangleRotate: { ready: false, currentFrame: 1, seconds: 1, direction: 1 },
-        triangleShift: { ready: true, currentFrame: 1, seconds: 1, xDirection: 1, yDirection: 1, constants: { xMove: utils.width / 200, yMove: utils.height / 200 } }
+        triangleShift: { ready: true, currentFrame: 1, seconds: 1, xDirection: 1, yDirection: 1, constants: { xMove: utils.width / 300, yMove: utils.height / 300 } }
     };
 }
 
@@ -415,7 +428,7 @@ function View3(name) {
             pulse.lastCall = new Date().getTime();
         }
 
-        socket.emit('africandrum', {});
+        socket.emit('africandrum', {room: room});
     }
     this.animate = function(event) {
         var pulse = this.animations.pulse;
@@ -451,7 +464,7 @@ function View3(name) {
                 pulse.lastCall = new Date().getTime();
             }
 
-            socket.emit('synthbass', {})
+            socket.emit('synthbass', {room: room})
         })
     }
 }
@@ -525,7 +538,7 @@ function View4(name) {
             randomShake.currentFrame = 1;
             randomShake.ready = true;
 
-        socket.emit('dhol', {});
+        socket.emit('dhol', {room: room});
     }
     this.animate = function(event) {
 
@@ -589,7 +602,7 @@ function View4(name) {
         view.on('mousedown', function(event) {
             console.log(n++)
             var location = event.point;
-            socket.emit('modernsynth', {x: event.point.x, y: event.point.y})
+            socket.emit('modernsynth', {x: event.point.x, y: event.point.y, room: room})
 
             var pointFocusFunction = function(circle, index) {
                 bringToPoint.destinationArray[index] = (location - circle.position) / 15;
@@ -642,6 +655,30 @@ function ViewController() {
 var utils = new Utils();
 var controller = new ViewController();
 
+console.log(selectedView, 'hi');
+
+if (selectedView === "1") {
+    controller.addView(new View1("Circle Visualization"));
+    controller.activateView("Circle Visualization");
+    controller.currentView.init();
+}
+else if (selectedView === "2") {
+    controller.addView(new View2("Triangle Visualization"));
+    controller.activateView("Triangle Visualization");
+    controller.currentView.init();
+}
+else if (selectedView === "3") {
+    controller.addView(new View3("Color Pulse Visualization"));
+    controller.activateView("Color Pulse Visualization");
+    controller.currentView.init();
+}
+else if (selectedView === "4") {
+    controller.addView(new View4("Space Time Paradigm Visualization"));
+    controller.activateView("Space Time Paradigm Visualization");
+    controller.currentView.init();
+
+}
+
 // controller.addView(new View1("Circle Visualization"));
 // controller.activateView("Circle Visualization");
 // controller.currentView.init();
@@ -655,9 +692,9 @@ var controller = new ViewController();
 // controller.activateView("Color Pulse Visualization");
 // controller.currentView.init();
 
-controller.addView(new View4("Space Time Paradigm Visualization"));
-controller.activateView("Space Time Paradigm Visualization");
-controller.currentView.init();
+// controller.addView(new View4("Space Time Paradigm Visualization"));
+// controller.activateView("Space Time Paradigm Visualization");
+// controller.currentView.init();
 
 function onFrame(event) {
     controller.currentView.animate(event);
@@ -668,25 +705,30 @@ function onResize(event) {
     project.clear();
     utils = new Utils();
 
-    // controller.removeView("Circle Visualization");
-    // controller.addView(new View1("Circle Visualization"));
-    // controller.activateView("Circle Visualization");
-    // controller.currentView.init();
-
-    // controller.removeView("Triangle Visualization");
-    // controller.addView(new View2("Triangle Visualization"));
-    // controller.activateView("Triangle Visualization");
-    // controller.currentView.init();
-
-    // controller.removeView("Color Pulse Visualization");
-    // controller.addView(new View3("Color Pulse Visualization"));
-    // controller.activateView("Color Pulse Visualization");
-    // controller.currentView.init();
-
-    controller.removeView("Space Time Paradigm Visualization");
-    controller.addView(new View4("Space Time Paradigm Visualization"));
-    controller.activateView("Space Time Paradigm Visualization");
-    controller.currentView.init();
+    if (selectedView === "1") {
+        controller.removeView("Circle Visualization");
+        controller.addView(new View1("Circle Visualization"));
+        controller.activateView("Circle Visualization");
+        controller.currentView.init();
+    }
+    else if (selectedView === "2") {
+        controller.removeView("Triangle Visualization");
+        controller.addView(new View2("Triangle Visualization"));
+        controller.activateView("Triangle Visualization");
+        controller.currentView.init();
+    }
+    else if (selectedView === "3") {
+        controller.removeView("Color Pulse Visualization");
+        controller.addView(new View3("Color Pulse Visualization"));
+        controller.activateView("Color Pulse Visualization");
+        controller.currentView.init();
+    }
+    else if (selectedView === "4") {
+        controller.removeView("Space Time Paradigm Visualization");
+        controller.addView(new View4("Space Time Paradigm Visualization"));
+        controller.activateView("Space Time Paradigm Visualization");
+        controller.currentView.init();
+    }
 }
 
 

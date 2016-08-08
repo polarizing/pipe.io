@@ -158,7 +158,7 @@ function View1(name) {
     this.init = function() {
         // this.layer.setName(name);
         this.draw();
-        this.setBackground('#D45346');
+        this.setBackground('#0D5D56');
     };
     this.activate = function() {
         project.layers.push(this.layer);

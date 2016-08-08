@@ -91,7 +91,6 @@ Utils.prototype.drawGridLines = function(lrNum, tbNum) {
     })
 }
 
-
 var utils = new Utils();
 var view4 = new View4('Space Time Paradigm Visualization');
 view4.init();
@@ -136,6 +135,7 @@ socket.on('dhol', function(data) {
 });
 
 socket.on('modernsynth', function(data) {
+    console.log('test');
     var location = Point.random()*view.size
     var bringToPoint = view4.animations.bringToPoint;
     var pointFocusFunction = function(circle, index) {

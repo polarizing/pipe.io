@@ -3,19 +3,6 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
 var socket = io();
 
-socket.on('connect:client', function () {
-	console.log('You have connected to the server!')
-})
-
-socket.on('init', function () {
-
-})
-
-
-
-
-
-
 // Track Accelerometer and Gyroscope
 // gyro.frequency = 10;
 
