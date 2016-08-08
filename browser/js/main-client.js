@@ -20,9 +20,9 @@ function Utils() {
     this.center = [this.horizontalCenter, this.verticalCenter];
     this.columnPartition = 24;
     this.rowPartition = 24;
-    this.column = this.width / this.columnPartition; 
-    this.row = this.height / this.rowPartition; 
-    this.leftOffsetColumn = 0; 
+    this.column = this.width / this.columnPartition;
+    this.row = this.height / this.rowPartition;
+    this.leftOffsetColumn = 0;
     this.rightOffsetColumn = 0;
     this.topOffsetRow = 0;
     this.bottomOffsetRow = 0;
@@ -112,7 +112,7 @@ function View1(name) {
     this.init = function() {
         this.layer.setName(name);
         this.draw();
-        this.setBackground('#D45346');
+        this.setBackground('#0D5D56'); // D45346 #
         this.addListeners();
     };
     this.activate = function() {
@@ -221,7 +221,7 @@ function View2(name) {
     this.name = name;
     this.init = function() {
         // "Root View Layer -> this.layer"
-        // this.setBackground();
+        this.setBackground('#F5E9E2');
 
         // "Child Layers -> this.layers"
         obj = { layers: 3, layerNames: ['topLayer', 'middleLayer', 'bottomLayer'] }
@@ -296,11 +296,11 @@ function View2(name) {
 
         var shift = this.animations.triangleShift;
         view.on('mousedown', function(event) {
-            shift.xDirection = event.point.x > utils.width / 2 ? 1 : -1;
-            shift.yDirection = event.point.y > utils.height / 2 ? 1 : -1;
+            shift.xDirection = chance.pick([1, -1]);//event.point.x > utils.width / 2 ? 1 : -1;
+            shift.yDirection = chance.pick([1, -1]);//event.point.y > utils.height / 2 ? 1 : -1;
             shift.currentFrame = 1;
             shift.ready = true;
-            socket.emit('fingerCymbal', { x: event.point.x, y: event.point.y });
+            socket.emit('fingerCymbal', { x: shift.xDirection, y: shift.yDirection });
         })
     }
 
@@ -582,7 +582,7 @@ function View4(name) {
     };
 
     this.addListeners = function() {
-        
+
         var bringToPoint = this.animations.bringToPoint;
         var self = this;
 
@@ -646,18 +646,18 @@ var controller = new ViewController();
 // controller.activateView("Circle Visualization");
 // controller.currentView.init();
 
-// controller.addView(new View2("Triangle Visualization"));
-// controller.activateView("Triangle Visualization");
-// controller.currentView.init();
+controller.addView(new View2("Triangle Visualization"));
+controller.activateView("Triangle Visualization");
+controller.currentView.init();
 
 
 // controller.addView(new View3("Color Pulse Visualization"));
 // controller.activateView("Color Pulse Visualization");
 // controller.currentView.init();
 
-controller.addView(new View4("Space Time Paradigm Visualization"));
-controller.activateView("Space Time Paradigm Visualization");
-controller.currentView.init();
+// controller.addView(new View4("Space Time Paradigm Visualization"));
+// controller.activateView("Space Time Paradigm Visualization");
+// controller.currentView.init();
 
 function onFrame(event) {
     controller.currentView.animate(event);
@@ -673,20 +673,20 @@ function onResize(event) {
     // controller.activateView("Circle Visualization");
     // controller.currentView.init();
 
-    // controller.removeView("Triangle Visualization");
-    // controller.addView(new View2("Triangle Visualization"));
-    // controller.activateView("Triangle Visualization");
-    // controller.currentView.init();
+    controller.removeView("Triangle Visualization");
+    controller.addView(new View2("Triangle Visualization"));
+    controller.activateView("Triangle Visualization");
+    controller.currentView.init();
 
     // controller.removeView("Color Pulse Visualization");
     // controller.addView(new View3("Color Pulse Visualization"));
     // controller.activateView("Color Pulse Visualization");
     // controller.currentView.init();
 
-    controller.removeView("Space Time Paradigm Visualization");
-    controller.addView(new View4("Space Time Paradigm Visualization"));
-    controller.activateView("Space Time Paradigm Visualization");
-    controller.currentView.init();
+    // controller.removeView("Space Time Paradigm Visualization");
+    // controller.addView(new View4("Space Time Paradigm Visualization"));
+    // controller.activateView("Space Time Paradigm Visualization");
+    // controller.currentView.init();
 }
 
 

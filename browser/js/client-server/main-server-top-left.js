@@ -6,9 +6,9 @@ function Utils() {
     this.center = [this.horizontalCenter, this.verticalCenter];
     this.columnPartition = 24;
     this.rowPartition = 24;
-    this.column = this.width / this.columnPartition; 
-    this.row = this.height / this.rowPartition; 
-    this.leftOffsetColumn = 0; 
+    this.column = this.width / this.columnPartition;
+    this.row = this.height / this.rowPartition;
+    this.leftOffsetColumn = 0;
     this.rightOffsetColumn = 0;
     this.topOffsetRow = 0;
     this.bottomOffsetRow = 0;
@@ -158,7 +158,7 @@ function View1(name) {
     this.init = function() {
         // this.layer.setName(name);
         this.draw();
-        this.setBackground('#D45346');
+        this.setBackground('#0D5D56');  //D45346 //D44D5C // 9BC1BC  712F79  B0BEA9
     };
     this.activate = function() {
         project.layers.push(this.layer);
