@@ -6,9 +6,9 @@ function Utils() {
     this.center = [this.horizontalCenter, this.verticalCenter];
     this.columnPartition = 24;
     this.rowPartition = 24;
-    this.column = this.width / this.columnPartition; 
-    this.row = this.height / this.rowPartition; 
-    this.leftOffsetColumn = 0; 
+    this.column = this.width / this.columnPartition;
+    this.row = this.height / this.rowPartition;
+    this.leftOffsetColumn = 0;
     this.rightOffsetColumn = 0;
     this.topOffsetRow = 0;
     this.bottomOffsetRow = 0;
@@ -137,8 +137,8 @@ function resizeAndRedrawCanvas()
 var shift = view2.animations.triangleShift;
 
 socket.on('fingerCymbal', function(data) {
-    shift.xDirection = data.x > utils.width / 2 ? 1 : -1;
-    shift.yDirection = data.y > utils.height / 2 ? 1 : -1;
+    shift.xDirection = data.x//chance.pick([1, -1])//data.x > utils.width / 2 ? 1 : -1;
+    shift.yDirection = data.y//chance.pick([1, -1])//data.y > utils.height / 2 ? 1 : -1;
     shift.currentFrame = 1;
     shift.ready = true;
 })
@@ -157,7 +157,7 @@ function View2(name) {
     this.name = name;
     this.init = function() {
         // "Root View Layer -> this.layer"
-        // this.setBackground();
+    this.setBackground('#F5E9E2');
 
         // "Child Layers -> this.layers"
         obj = { layers: 3, layerNames: ['topLayer', 'middleLayer', 'bottomLayer'] }
