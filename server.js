@@ -27,6 +27,15 @@ io.on('connection', function (socket) {
 
     socket.on('disconnect', function () {
         console.log('got disconnected');
+        // for (var room in rooms) {
+        //     var clients = rooms[room].client
+        //     for (var i = 0; i < clients.length; i++) {
+        //         if (clients[i].id === socket.id) {
+        //             rooms[room].views[clients[i].view] = false;
+        //             clients.splice(i, 1);
+        //         }
+        //     }
+        // }
     })
 
     socket.on('connect:server', function (data) {
@@ -54,7 +63,6 @@ io.on('connection', function (socket) {
     socket.on('connect:room', function (data) {
         var roomData = data;
         var room = rooms[roomData.id]
-        room.client.push(socket.id);
         var viewAssign = function () {
             for (var view in room.views) {
                 if (!room.views[view]) {
@@ -64,6 +72,7 @@ io.on('connection', function (socket) {
             }
         }
         var assignedView = viewAssign();
+        room.client.push(socket.id);
         io.to(socket.id).emit('client:ready', {room: room, view: assignedView})
     })
 
